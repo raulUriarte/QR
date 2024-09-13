@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PatrimonioHBC</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Contenedor del video de fondo */
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1; /* Para que el video esté detrás del contenido */
+        }
+
+        /* Contenido de la página */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Video de fondo -->
+    <video class="video-background" autoplay muted loop>
+         
+        <!---<source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">-->
+        <source src="https://media.istockphoto.com/id/1280441820/es/v%C3%ADdeo/fondos-abstractos-volando-ola-de-vista-a%C3%A9rea-en-la-playa.mp4?s=mp4-640x640-is&k=20&c=HQ5m9Tpvfz7bD2xInXlVCSUc1PgHEYUi0j09ZrAEotE=" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+    </video>
+
+    <!-- Contenido de la página -->
+    <div class="content">
+        <h1>HOSPITAL BARRANCA CAJATAMBO</h1>
+        <h2>ÁREA DE CONTROL PATRIMONIAL</h2>
+    </div>
+
+</body>
+</html>
