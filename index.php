@@ -1,54 +1,15 @@
 <?php
 require('fpdf/fpdf.php'); 
 
-class PDF extends FPDF 
-{
-    // Pie de página
-    function Footer()
-    {
-       // Posición a 1.5 cm del final
-        //$this->SetY(-55.1);   ///ARRIBA ABAJO
-        $this->SetY(-42);   ///ARRIBA ABAJO
-        //$this->SetX(-70);  ///IZQUI DERECHA
-        $this->SetX(-77);  ///IZQUI DERECHA
-        // Arial italic 8
-        $this->SetFont('times', 'I', 11); //'times','',11
-        // Número de página        
-          $this->Cell (0, 0, utf8_decode('Página Nº ')  . $this->PageNo(), '/{nb}',1 ,0, 'C');      
-    }
+
 //********************************************************************** */ 
 
-    // Función para rotar texto
-    function RotatedText($x, $y, $txt, $angle)
-    {
-        // Rotar texto
-        $this->Rotate($angle, $x, $y);
-        $this->Text($x, $y, $txt);
-        $this->Rotate(0);
-    }
+  
 
 //********************************************************************** */     
     
     // Función para rotar (puedes modificarla si es necesario)
-    function Rotate($angle, $x = -1, $y = -1)
-    {
-        if ($x == -1) {
-            $x = $this->GetX();
-        }
-        if ($y == -1) {
-            $y = $this->GetY();
-        }
-        
-        $this->_out(sprintf('q %.2F %.2F %.2F %.2F %.2F %.2F cm /R %.2F a', 
-            cos($angle * M_PI / 180), 
-            sin($angle * M_PI / 180), 
-            -sin($angle * M_PI / 180), 
-            cos($angle * M_PI / 180), 
-            $x * $this->k, 
-            ($this->h - $y) * $this->k, 
-            $angle));
-    }
-}
+    
 
 //********************************************************************** */ 
 
@@ -56,8 +17,8 @@ class PDF extends FPDF
         $conexion = new PDO("sqlsrv:server=siga_nube.mssql.somee.com; database=siga_nube", "SQLrauluriate_hbc", "10635015ch1t0");
 
 // Obtener el código barra desde la URL
-        //$codigo_barra = isset($_GET['codigo_barra']) ? $_GET['codigo_barra'] : '';
-        $codigo_barra = isset($_GET['P032314']) ? $_GET['codigo_barra'] : '';
+        $codigo_barra = isset($_GET['codigo_barra']) ? $_GET['codigo_barra'] : '';
+        //$codigo_barra = isset($_GET['P032314']) ? $_GET['codigo_barra'] : '';
 
 // Asegúrate de sanitizar el input para prevenir SQL Injection
         $consulta = $conexion->prepare("SELECT * FROM dbo.diem WHERE codigo_barra = :codigo_barra");
