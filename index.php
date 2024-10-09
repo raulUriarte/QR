@@ -101,39 +101,7 @@ if (count($datos) > 0)
 
          // Foto   
 
-            // URL de la imagen
-            $imageUrl = $dato['url_imagen'];
-
-            // Verifica si la URL es válida
-            if (filter_var($imageUrl, FILTER_VALIDATE_URL)) 
-            {
-                // Descargar la imagen
-                $imageContent = file_get_contents($imageUrl);
-
-                // Verifica si se descargó correctamente
-                if ($imageContent !== false) 
-                    {
-                        // Guardar la imagen temporalmente en el servidor
-                        $tempImage = 'temp_image.jpg'; // Cambia la extensión si es PNG o GIF
-                        file_put_contents($tempImage, $imageContent);
-
-                        // Inserta la imagen en el PDF
-                        $fpdf->setY(102); // Posicionamiento Y
-                        $fpdf->setX(48); // Posicionamiento X
-                        $fpdf->Image($tempImage, 48, 102, 60, 60); // Inserta la imagen en el PDF
-
-                        // Eliminar la imagen temporal después de usarla
-                        unlink($tempImage);
-                    } 
-                      else
-                    {
-                       echo 'No se pudo descargar la imagen desde la URL proporcionada.';
-                    }
-            }
-                   else 
-                 {
-                   echo 'La URL de la imagen no es válida.';
-                 }
+            
          //********************************************************************** */ 
 
          // Marca
