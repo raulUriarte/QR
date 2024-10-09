@@ -56,7 +56,8 @@ class PDF extends FPDF
         $conexion = new PDO("sqlsrv:server=siga_nube.mssql.somee.com; database=siga_nube", "SQLrauluriate_hbc", "10635015ch1t0");
 
 // Obtener el código barra desde la URL
-        $codigo_barra = isset($_GET['codigo_barra']) ? $_GET['codigo_barra'] : '';
+        //$codigo_barra = isset($_GET['codigo_barra']) ? $_GET['codigo_barra'] : '';
+        $codigo_barra = isset($_GET['P032314']) ? $_GET['codigo_barra'] : '';
 
 // Asegúrate de sanitizar el input para prevenir SQL Injection
         $consulta = $conexion->prepare("SELECT * FROM dbo.diem WHERE codigo_barra = :codigo_barra");
