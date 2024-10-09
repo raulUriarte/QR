@@ -85,11 +85,11 @@ if (count($datos) > 0)
            // Aquí se agregan los detalles del activo al PDF...
 
 // Descripción
-         $fpdf->SetFont('Arial', 'B', 12);
-         $fpdf->SetTextColor(0, 0, 0); 
-         $fpdf->setY(87);
-         $fpdf->setX(47);
-         $fpdf->MultiCell(115, 5, utf8_decode($dato['descripcion_del_bien']), 0, 'C');
+             $fpdf->SetFont('Arial', 'B', 12);
+             $fpdf->SetTextColor(0, 0, 0); 
+             $fpdf->setY(87);
+             $fpdf->setX(47);
+             $fpdf->MultiCell(115, 5, utf8_decode($dato['descripcion_del_bien']), 0, 'C');
 //********************************************************************** */ 
 
  // Foto        
@@ -156,11 +156,11 @@ if (count($datos) > 0)
 
  // Pecosa
          // Pecosa
-     $fpdf->SetFont('Arial', '', 11);
-     $fpdf->setY(135);
-     $fpdf->setX(108);
-     $pecosaEntero = intval($dato['numero_pecosa']);
-     $fpdf->write(0, "PECOSA      : " . $pecosaEntero);               
+         $fpdf->SetFont('Arial', '', 11);
+         $fpdf->setY(135);
+         $fpdf->setX(108);
+         $pecosaEntero = intval($dato['numero_pecosa']);
+         $fpdf->write(0, "PECOSA      : " . $pecosaEntero);               
  //********************************************************************** */ 
 
  // Fecha
@@ -184,10 +184,10 @@ if (count($datos) > 0)
  //********************************************************************** */
 
  // Vida útil
-     $fpdf->setY(150);
-     $fpdf->setX(108);
-     $vidautilEntero = intval($dato['vida_util']);
-     $fpdf->write(0, utf8_decode("VIDA ÚTIL    : " . $vidautilEntero . " AÑOS"));          
+         $fpdf->setY(150);
+         $fpdf->setX(108);
+         $vidautilEntero = intval($dato['vida_util']);
+         $fpdf->write(0, utf8_decode("VIDA ÚTIL    : " . $vidautilEntero . " AÑOS"));          
  //********************************************************************** */
 
  // Costo de compra
@@ -311,41 +311,29 @@ if (count($datos) > 0)
         $fpdf->RotatedText(108, 140, utf8_decode("FECHA         : " . $fechaFormateada), 90);
 
 
-// Continúa con el resto del código para imprimir otros detalles...
+// Continúa con el resto del código para imprimir otros detalles...    }
 
+} 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-} else 
+else 
 {
     // Manejar caso sin datos
-    $fpdf->SetFont('Arial', 'B', 15);
-    $fpdf->SetTextColor(255, 0, 0); 
-    $fpdf->setY(100);
-    $fpdf->setX(48);   
-    $fpdf->MultiCell(115, 10, utf8_decode("Todavia no se ha subido la informacion:"),0,'C');
-    $fpdf->ln();
+        $fpdf->SetFont('Arial', 'B', 15);
+        $fpdf->SetTextColor(255, 0, 0); 
+        $fpdf->setY(100);
+        $fpdf->setX(48);   
+        $fpdf->MultiCell(115, 10, utf8_decode("Todavia no se ha subido la informacion:"),0,'C');
+        $fpdf->ln();
 
-    $fpdf->SetFont('Arial', 'B', 15);
-    $fpdf->SetTextColor(255, 0, 0); 
-    $fpdf->setY(120);
-    $fpdf->setX(48);
-    //$fpdf->MultiCell(115, 5, utf8_decode("Todavia no se ha subido la informacion:"),0,'C');
-    $fpdf->MultiCell(115, 10, utf8_decode("del :".$codigo_barra),0,'C');
+        $fpdf->SetFont('Arial', 'B', 15);
+        $fpdf->SetTextColor(255, 0, 0); 
+        $fpdf->setY(120);
+        $fpdf->setX(48);
+        //$fpdf->MultiCell(115, 5, utf8_decode("Todavia no se ha subido la informacion:"),0,'C');
+        $fpdf->MultiCell(115, 10, utf8_decode("del :".$codigo_barra),0,'C');
 
     // Código para manejar ausencia de datos...
 }
-$fpdf->Output();
+    // Muestra las paginas
+        $fpdf->Output();
 ?>
