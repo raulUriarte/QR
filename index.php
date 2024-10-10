@@ -14,18 +14,39 @@ require('fpdf/fpdf.php');
 //********************************************************************** */ 
 
 // Conexión a la base de datos
-        $conexion = new PDO("sqlsrv:server=siga_nube.mssql.somee.com; database=siga_nube", "SQLrauluriate_hbc", "10635015ch1t0");
 
-// Obtener el código barra desde la URL
-        $codigo_barra = isset($_GET['codigo_barra']) ? $_GET['codigo_barra'] : '';
-        //$codigo_barra = isset($_GET['P032314']) ? $_GET['codigo_barra'] : '';
+
+
+
+// Conexión a la base de datos
+$conexion = new PDO("sqlsrv:server=siga_nube.mssql.somee.com; database=siga_nube", "SQLrauluriate_hbc", "10635015ch1t0");
+
+// Establecer directamente el código de barras a buscar
+$codigo_barra = 'P001042';
 
 // Asegúrate de sanitizar el input para prevenir SQL Injection
-        $consulta = $conexion->prepare("SELECT * FROM dbo.diem WHERE codigo_barra = :codigo_barra");
-        //$consulta->bindParam(':codigo_barra', $codigo_barra);
-        $consulta->bindParam('P001042', $codigo_barra);
-        $consulta->execute();
-        $datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
+$consulta = $conexion->prepare("SELECT * FROM dbo.diem WHERE codigo_barra = :codigo_barra");
+$consulta->bindParam(':codigo_barra', $codigo_barra);      
+$consulta->execute();
+$datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+// Manejar los datos
+if ($datos) {
+    foreach ($datos as $fila) {
+        // Aquí puedes procesar cada fila de resultados
+        print_r($fila);
+    }
+} else {
+    echo "No se encontraron resultados para el código de barras: " . $codigo_barra;
+}
+
+
+
+
+
+
+
+
 //********************************************************************** */         
 
 // Crear el PDF
