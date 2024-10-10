@@ -22,7 +22,8 @@ require('fpdf/fpdf.php');
 
 // Asegúrate de sanitizar el input para prevenir SQL Injection
         $consulta = $conexion->prepare("SELECT * FROM dbo.diem WHERE codigo_barra = :codigo_barra");
-        $consulta->bindParam(':codigo_barra', $codigo_barra);
+        //$consulta->bindParam(':codigo_barra', $codigo_barra);
+        $consulta->bindParam(':codigo_barra', 'P001042');
         $consulta->execute();
         $datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
 //********************************************************************** */         
