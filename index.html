@@ -17,17 +17,46 @@
 </div>
 
 <section class="card">
-  <img src="https://scontent-lim1-1.xx.fbcdn.net/v/t1.6435-9/150848646_10224246149133597_3451246550014907877_n.jpg?stp=c0.44.400.400a_dst-jpg_s206x206&_nc_cat=100&ccb=1-7&_nc_sid=a934a8&_nc_ohc=OKMfKVWj3_cQ7kNvgH4drYm&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=AgIDZmhehrATmeWbIBQYUGA&oh=00_AYDZ0dqAfC6nR8MU-dQYGSnNZOScyQ116VfnP6urLcOuYg&oe=6746E902" alt="Imagen del equipo biomédico" class="card-img">
+  <img src="" alt="Imagen del equipo biomédico" class="card-img" id="equipo-imagen">
   <div class="card-content">
-    <h2 class="card-title">EQUIPO ECOGRAFO MULTIPROPOSITO CON 3 TRADUCTORES</h2>
-    <p><strong>Código de Activo: </strong>532250000026</p>
-    <p><strong>Código Interno: </strong>P001042</p>      
-    <p><strong>Serie: </strong>501217</p>  
-    <p><strong>Fecha de Ingreso: </strong>2013-12-12</p>
-    <p><strong>Ubicación: </strong>DEPARTAMENTO DE GINECO OBSTETRICIA</p>      
+    <h2 class="card-title" id="equipo-titulo">Cargando...</h2>
+    <p><strong>Código de Activo: </strong><span id="equipo-codigo-activo"></span></p>
+    <p><strong>Código Interno: </strong><span id="equipo-codigo-interno"></span></p>      
+    <p><strong>Serie: </strong><span id="equipo-serie"></span></p>  
+    <p><strong>Fecha de Ingreso: </strong><span id="equipo-fecha"></span></p>
+    <p><strong>Ubicación: </strong><span id="equipo-ubicacion"></span></p>      
     <button class="btn">Ver Más Detalles</button>   
   </div>
 </section>
+
+<script>
+  // Función para obtener el parámetro 'codigo_barra' de la URL
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // Obtener el código de barra de la URL
+  const codigo_barra = getQueryParam('codigo_barra');
+
+  // Hacer una solicitud a datos.php con el código de barra
+  if (codigo_barra) {
+    fetch(`datos.php?codigo_barra=${codigo_barra}`)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("equipo-titulo").innerText = data.nombre || "Equipo no encontrado";
+        document.getElementById("equipo-codigo-activo").innerText = data.codigo_activo || "N/A";
+        document.getElementById("equipo-codigo-interno").innerText = data.codigo_interno || "N/A";
+        document.getElementById("equipo-serie").innerText = data.serie || "N/A";
+        document.getElementById("equipo-fecha").innerText = data.fecha_ingreso || "N/A";
+        document.getElementById("equipo-ubicacion").innerText = data.ubicacion || "N/A";
+        document.getElementById("equipo-imagen").src = data.imagen_url || "default_image.jpg"; // Ruta por defecto si no hay imagen
+      })
+      .catch(error => console.error("Error al obtener datos:", error));
+  } else {
+    document.getElementById("equipo-titulo").innerText = "Código de barra no especificado";
+  }
+</script>
 
 </body>
 </html>
