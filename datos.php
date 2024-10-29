@@ -11,7 +11,7 @@ try {
     $codigo_barra = isset($_GET['codigo_barra']) ? $_GET['codigo_barra'] : '';
 
     // Consulta para obtener el equipo por su código de barras
-    $query = "SELECT * FROM equipos WHERE codigo_barra = :codigo_barra";
+    $query = "SELECT * FROM diem WHERE codigo_barra = :codigo_barra";
     $stmt = $pdo->prepare($query);
     $stmt->execute(['codigo_barra' => $codigo_barra]);
     $equipo = $stmt->fetch(PDO::FETCH_ASSOC);
