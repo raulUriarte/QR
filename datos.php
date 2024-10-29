@@ -1,5 +1,5 @@
 <?php
-$host = "sqlsrv:server=siga_nube.mssql.somee.com;database=siga_nube";
+$host = "sqlsrv:server=siga_nube.mssql.somee.com;database=diem";
 $user = "SQLrauluriate_hbc";
 $pass = "10635015ch1t0";
 
